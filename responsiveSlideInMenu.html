@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  /*///////// ///TopBar Styles////////////*/
+
+  .myTopBar {
+    height: 0px;
+    width: 100%;
+    transition: .5s;
+    position: fixed;
+    background-color: #3256EC;
+    z-index: 99;
+  }
+
+  .myMenu {
+    max-width: 100%;
+    height: 100%;
+    list-style: none;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+
+  .myMenu-text {
+    font-weight: bold;
+    color: #fff;
+    display: none;
+  }
+
+  .menuTrigger {
+    border: solid 2px #fff;
+    border-radius: 10px;
+    padding: 4px 25px;
+    transition: .5;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    position: fixed;
+    right: 30px;
+    top: 13px;
+  }
+
+  .myTopBar a {
+    color: #fff;
+    font-size: 18px;
+    transition: .7s;
+    border-bottom: 2px solid #3256EC;
+    border-top: 2px solid #3256EC;
+  }
+
+  .hideLink {
+    display: none;
+  }
+
+  .myTopBar a:hover {
+    border-bottom: 2px solid #fff;
+    border-top: 2px solid #fff;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    /*//////Top Bar Large Screens//////*/
+    .myTopBar {
+      height: 0px;
+    }
+
+    .myMenu {
+      max-width: 60%;
+      height: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      display: none;
+    }
+
+    .menuTrigger {
+      display: none;
+    }
+
+    .hideLink {
+      display: block;
+    }
+  }
+
+  </style>
+</head>
+<body>
+  <div class="myTopBar">
+    <p class="menuTrigger hideOnSmall">
+      menu
+    </p>
+    <ul class="myMenu">
+      <li class="myMenu-text">Superior BioDX</li>
+      <li>
+        <a class="hideLink" href="index.php">Home</a>
+      </li>
+      <li>
+        <a class="hideLink" href="about.php">About</a>
+      </li>
+      <li>
+        <a class="hideLink" href="#">Products</a>
+      </li>
+      <li>
+        <a class="hideLink" href="#">Order</a>
+      </li>
+      <li>
+        <a class="hideLink" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <script>
+
+  const theTrigger = document.querySelector('.menuTrigger');
+  const theLogoWords = document.querySelector('.myMenu-text');
+
+  window.addEventListener('scroll', function() {
+    const topBar = document.querySelector('.myTopBar');
+    const disFromTop = window.pageYOffset;
+    if (disFromTop > 69 ) {
+      topBar.style.height = "60px";
+      document.querySelector('.myMenu').style.display = "flex";
+      theTrigger.classList.remove('hideOnSmall');
+      theLogoWords.style.display = "block";
+    } else if (disFromTop <= 69 ) {
+      topBar.style.height = "0px";
+      document.querySelector('.myMenu').style.display = "none";
+      theTrigger.classList.add('hideOnSmall');
+      theLogoWords.style.display = "none";
+    }
+  });
+
+  var isOpen;
+
+  theTrigger.addEventListener('click', function() {
+    if (isOpen !== true) {
+      document.querySelector('.myTopBar').style.height = "230px";
+      document.querySelectorAll('.hideLink').forEach(link => link.style.display = "block");
+      isOpen = true;
+    } else {
+      document.querySelector('.myTopBar').style.height = "60px";
+      document.querySelectorAll('.hideLink').forEach(link => link.style.display = "none");
+      isOpen = false;
+    }
+
+  });
+  </script>
+</body>
+</html>

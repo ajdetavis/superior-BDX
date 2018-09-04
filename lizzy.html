@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+      h1 {
+        font-size: 80px;
+        color: purple;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <script>
+      var i = 0;
+      function change() {
+        var doc = document.getElementById("title");
+        var color = ["pink", "goldenrod", "red", "green"];
+        doc.style.color = color[i];
+        i = (i + 1) % color.length;
+      }
+      setInterval(change, 700);
+    </script>
+
+
+    <div class="container">
+      <h1 id="title">Hello Lizzy</h1>
+    </div>
+
+  </body>
+</html>
